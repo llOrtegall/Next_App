@@ -1,10 +1,30 @@
-version: '3.7'
-
 services:
+  web:
+    image: nginx:stable-alpine3.19-slim
+    container_name: web_server
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./client/dist:/usr/share/nginx/html
+      - ./config:/etc/nginx/conf.d
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: api_ortega:1.0  # Nombre de la imagen construida
+    container_name: api_server
+    restart: always
+    ports:
+      - "3000:80"
+
   database:
     image: mysql:lts
     container_name: database
     restart: always
+    volumes:
+      - ./db:/var/lib/mysql
     ports:
       - "9020:3306"
     environment:
