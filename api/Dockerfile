@@ -1,6 +1,6 @@
 FROM node:22.5.1-slim
 
-WORKDIR /app
+WORKDIR /home/node/app
 
 # Copiar todo el código fuente
 COPY . .

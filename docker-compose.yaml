@@ -20,8 +20,8 @@ services:
       - "3000:80"
 
   database:
-    image: mysql:lts
-    container_name: database
+    image: mysql:innovation
+    container_name: db_server
     restart: always
     volumes:
       - ./db:/var/lib/mysql
