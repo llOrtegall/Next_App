@@ -1,24 +1,15 @@
 'use client';
 
-import { signIn, signOut } from 'next-auth/react'
-import { Session } from 'next-auth'
+import { signIn } from 'next-auth/react'
 
-export default function LoginPage({ session }: { session: Session | null }) {
+export default function LoginPage() {
   return (
-    <div>
-      {
-        session ? (
-          <>
-            <p>Signed in as {session?.user?.email}</p>
-            <button onClick={() => signOut()}>Sign out</button>
-          </>
-        ) : (
-          <>
-            <p>Not signed in</p>
-            <button onClick={() => signIn()}>Sign in</button>
-          </>
-        )
-      }
-    </div>
+    <section className='h-screen flex items-center justify-center'>
+      <div>
+        <button onClick={() => signIn('google')} className='bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-800'>
+          Iniciar Sesión con Google
+        </button>
+      </div>
+    </section>
   );
 }
